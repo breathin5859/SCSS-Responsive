@@ -1,9 +1,13 @@
 {
+  "type": "module",
   "scripts": {
     "dev": "sass scss:css --watch",
-    "build": "sass scss:build --style=compressed --no-source-map"
+    "build": "sass scss:build --style=compressed --no-source-map && node main.js"
   },
   "dependencies": {
+    "imagemin": "^9.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-pngquant": "^10.0.0",
     "sass": "^1.77.8"
   }
 }
