@@ -1,0 +1,72 @@
+@mixin position($state, $x, $xv, $y, $yv, $zIndex: 1) {
+  @if $state == "absolute" or $state == "a" {
+    position: absolute;
+  } @else if $state == "fixed" or $state == "f" {
+    position: fixed;
+  } @else if $state == "sticky" or $state == "s" {
+    position: sticky;
+  } @else if $state == "relative" or $state == "l" {
+    position: relative;
+  }
+
+  //속성, 클래스는 변수로 바로 못넣으니 문자보간.
+  #{$x}: $xv;
+  #{$y}: $yv;
+  z-index: var(--z, $zIndex);
+  //여러개 팝업인 경우 클래스 같고 제트인덱스 다르게 주는 경우 각각 html에서 변수로
+
+  // 좌표의 방향에 따라 translate의 값이 달라지므로 이를 상황에 따라 처리한다.
+  @if $x == "left" and $y == "top" {
+    // left 50% top 50%
+    @if $xv == 50% and $yv == 50% {
+      translate: -50% -50%;
+
+      // left 만 50%일때
+    } @else if $xv == 50% {
+      translate: -50%;
+
+      // top 만 50%일때
+    } @else if $yv == 50% {
+      translate: 0 -50%;
+    }
+  } @else if $x == "right" and $y == "bottom" {
+    //right 50% bottom 50%
+    @if $xv == 50% and $yv == 50% {
+      translate: 50% 50%;
+
+      // right 만 50%일때
+    } @else if $xv == 50% {
+      translate: 50%;
+
+      // bottom 만 50%일때
+    } @else if $yv == 50% {
+      translate: 0 50%;
+    }
+  } @else if $x == "right" and $y == "top" {
+    // right 50% top 50%
+    @if $xv == 50% and $yv == 50% {
+      translate: 50% -50%;
+
+      // right만 50%일때
+    } @else if $xv == 50% {
+      translate: 50%;
+
+      // top만 50%일때
+    } @else if $yv == 50% {
+      translate: 0 -50%;
+    }
+  } @else if $x == "left" and $y == "bottom" {
+    // left 50% bottom 50%
+    @if $xv == 50% and $yv == 50% {
+      translate: -50% 50%;
+
+      // left만 50%일때
+    } @else if $xv == 50% {
+      translate: -50%;
+
+      // bottom만 50%일때
+    } @else if $yv == 50% {
+      translate: 0 50%;
+    }
+  }
+}

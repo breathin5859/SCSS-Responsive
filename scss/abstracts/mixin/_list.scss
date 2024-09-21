@@ -1,0 +1,35 @@
+@use "../function" as *;
+
+@mixin listStyle($varName, $index) {
+  #{map-get($varName, $index, className)} {
+    color: map-get($varName, $index, color);
+    @content;
+
+    @if map-get($varName, $index, textType) {
+      @extend #{map-get($varName, $index, textType)};
+    }
+
+    li {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      align-items: center;
+      &::before {
+        align-self: start;
+        display: inline-block;
+        margin: map-get($varName, $index, margin);
+
+        @if map-get($varName, $index, marker) == "※" or map-get($varName, $index, marker) == "*" {
+          content: map-get($varName, $index, marker);
+        } @else {
+          content: "";
+          width: rem(map-get($varName, $index, width));
+          height: rem(map-get($varName, $index, height));
+          background-color: map-get($varName, $index, color);
+          @if map-get($varName, $index, radius) {
+            border-radius: rem(map-get($varName, $index, radius));
+          }
+        }
+      }
+    }
+  }
+}

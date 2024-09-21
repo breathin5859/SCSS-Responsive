@@ -1,0 +1,94 @@
+@use "../abstracts/" as *;
+@use "./align" as *;
+
+@layer Layout.Footer {
+  $gray3f: #3f3f3f;
+
+  .footer {
+    color: $gray66;
+    font-size: rem(14);
+
+    @include mobile {
+      color: $graycc;
+      font-size: rem(20);
+    }
+
+    &__advertisement {
+      @extend .mxauto;
+      font-size: 0;
+      img {
+        width: 100%;
+        //1224/140
+        aspect-ratio: 8.742;
+        object-fit: cover;
+      }
+      //큰거에서 작은걸로 include
+      @include mobile() {
+        img {
+          aspect-ratio: 7.058;
+        }
+      }
+      // 계속 해줘야하니 믹스인으로
+      // @media (1000px > width) {
+      //   width: 100%;
+      //   img {
+      //     aspect-ratio: 7.058;
+      //   }
+      // }
+    }
+
+    &__bottom {
+      border-top: rem(1) solid $gray66;
+      background-color: $white;
+      @include mobile {
+        padding: rem(38) rem(30);
+        background-color: $gray3f;
+      }
+      .logo {
+        color: $yellow;
+        font-size: rem(26);
+        font-weight: 700;
+      }
+      > div {
+        @extend .mxauto;
+      }
+    }
+    &__address {
+      font-weight: 500;
+      margin-top: rem(46);
+
+      @include bar(l, 4, 4, $gray66, 10);
+      @include mobile {
+        display: block;
+        margin-top: 0;
+        address {
+          margin-top: rem(20);
+        }
+      }
+      address::before {
+        border-radius: rem(100);
+        @include mobile {
+          display: none;
+        }
+      }
+    }
+    &__contact {
+      display: flex;
+      gap: rem(20);
+      margin-top: rem(10);
+      @include mobile {
+        gap: 0;
+        margin-top: rem(20);
+        @include bar(l, 2, 2, $graycc, 10);
+      }
+    }
+    &__copy {
+      margin-top: rem(35);
+      font-weight: 500;
+      @include mobile {
+        margin-top: rem(50);
+        font-weight: 500;
+      }
+    }
+  }
+}

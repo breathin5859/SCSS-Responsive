@@ -1,0 +1,27 @@
+@use "../function" as *;
+@use "./background" as *;
+
+@mixin bar($method, $width, $height, $bg, $gap) {
+  display: flex;
+  align-items: center;
+  > * {
+    + * {
+      display: flex;
+      align-items: center;
+      &::before {
+        content: "";
+        margin-inline: rem($gap);
+        width: rem($width);
+        height: rem($height);
+
+        @if $method == "line" or $method == "l" {
+          background-color: $bg;
+        } @else if $method == "bg" or $method == "img" or $method == "image" {
+          @include background($bg);
+        } @else {
+          @error "방식(line or bg), 가로, 세로, 배경, 여백순서로 넣어주세요";
+        }
+      }
+    }
+  }
+}

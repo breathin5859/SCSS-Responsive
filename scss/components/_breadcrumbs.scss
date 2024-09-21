@@ -1,0 +1,110 @@
+@use "../abstracts/" as *;
+@use "../layout/align" as *;
+
+@layer Components.Breadcrumbs {
+  .breadcrumbs {
+    padding-block: rem(28);
+    border-bottom: rem(1) solid $yellow;
+    @include mobile {
+      padding: 0;
+    }
+    > div {
+      @extend .mxauto;
+    }
+    &__web {
+      @include bar(bg, 24, 24, "ico_breadcrumbs.svg", 20);
+      @include mobile {
+        display: none;
+      }
+
+      a {
+        color: $gray66;
+        font-size: rem(16);
+        letter-spacing: rem(-0.8);
+      }
+      li:first-child a {
+        font-weight: 700;
+      }
+      li:last-child a {
+        color: $gray33;
+        text-decoration-line: underline;
+        font-weight: 700;
+      }
+    }
+    &__mobile {
+      display: none;
+      @include mobile {
+        display: flex;
+        > li {
+          flex: 1;
+          > button {
+            @include background("ico_breadcrumbs_mobile.svg", right rem(30) center, null, rem(20));
+            width: 100%;
+            height: rem(100);
+            padding-inline: rem(30);
+            text-align: left;
+            color: $black;
+            font-size: rem(24);
+            letter-spacing: rem(-1.2);
+            &[popovertarget="breadcrumbs1"] {
+              anchor-name: --bread1;
+            }
+            &[popovertarget="breadcrumbs2"] {
+              anchor-name: --bread2;
+            }
+          }
+          &:last-child {
+            > button {
+              color: $black;
+              font-size: rem(26);
+              font-weight: 700;
+              letter-spacing: rem(-1.3);
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    #breadcrumbs1 {
+      inset: anchor(--bread1 bottom) anchor(--bread1 right) auto anchor(--bread1 left);
+      width: auto;
+    }
+    #breadcrumbs2 {
+      inset: anchor(--bread2 bottom) anchor(--bread2 right) auto anchor(--bread2 left);
+      width: auto;
+    }
+    .depth2 {
+      position: absolute;
+      padding: rem(30) rem(30) rem(50);
+      border: none;
+      box-shadow: 0 rem(6) rem(20) 0 rgba($black, 0.1);
+      background: $white;
+      transition: 0.5s allow-discrete;
+      opacity: 0;
+      &:popover-open {
+        opacity: 1;
+        @starting-style {
+          opacity: 0;
+        }
+      }
+      > li {
+        > a {
+          color: $gray33;
+          font-size: rem(32);
+          font-weight: 700;
+          line-height: 100%;
+        }
+        > ul {
+          display: grid;
+          gap: rem(34);
+          margin-top: rem(34);
+          a {
+            color: $gray33;
+            font-size: rem(26);
+            line-height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

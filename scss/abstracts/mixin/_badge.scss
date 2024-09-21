@@ -1,0 +1,19 @@
+@use "../function" as *;
+
+@mixin badgeSize($varName, $index) {
+  &#{map-get($varName, $index, className)} {
+    height: rem(map-get($varName, $index, height));
+    font-size: rem(map-get($varName, $index, fontSize));
+    padding-inline: rem(map-get($varName, $index, paddingInline));
+    border: rem(map-get($varName, $index, borderWidth)) solid;
+    font-weight: map-get($varName, $index, fontWeight);
+  }
+}
+//색상
+@mixin badgeColor($varName, $index) {
+  &#{map-get($varName , $index, className)} {
+    background-color: map-get($varName, $index, bgColor);
+    color: map-get($varName, $index, color);
+    border-color: map-get($varName, $index, borderColor);
+  }
+}

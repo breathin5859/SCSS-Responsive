@@ -1,0 +1,52 @@
+@use "../abstracts/" as *;
+
+@layer Components.Dialog {
+  body:has(.dialog-type1:popover-open) {
+    overflow: hidden;
+  }
+  .dialog-type1 {
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    padding: rem(40);
+    min-width: rem(380);
+    border: none;
+    text-align: center;
+    transition: 0.5s allow-discrete;
+    translate: -50% -40%;
+    opacity: 0;
+
+    &__title {
+      font-size: rem(20);
+      font-weight: 700;
+      letter-spacing: rem(-0.1);
+      color: $gray33;
+    }
+    &__text {
+      margin-top: rem(10);
+      font-size: rem(14);
+      line-height: rem(26);
+      letter-spacing: rem(-0.28);
+      color: $gray33;
+    }
+
+    &::backdrop {
+      background-color: rgba($black, 0);
+      transition: 0.5s allow-discrete;
+    }
+    &:popover-open {
+      translate: -50% -50%;
+      opacity: 1;
+      @starting-style {
+        translate: -50% -60%;
+        opacity: 0;
+      }
+
+      &::backdrop {
+        background-color: rgba($black, 0.7);
+        @starting-style {
+          background-color: rgba($black, 0);
+        }
+      }
+    }
+  }
+}

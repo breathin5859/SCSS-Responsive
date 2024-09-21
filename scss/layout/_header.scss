@@ -1,0 +1,50 @@
+@use "../abstracts/" as *;
+@use "./align" as *;
+
+@layer Layout.Header {
+  .header {
+    anchor-name: --header;
+
+    border-bottom: rem(1) solid $yellow;
+    @include mobile {
+      background-color: $yellow;
+      padding: rem(22) rem(32);
+    }
+    &__inner {
+      @extend .mxauto;
+      display: grid;
+      grid-template-columns: min-content 1fr min-content;
+      align-items: center;
+      gap: rem(114);
+      // @include container(컨테이너네임, 기준이하값) {}
+      @include container(body, 1135px) {
+        gap: 0;
+      }
+    }
+    .utillity {
+      display: flex;
+      align-items: center;
+      gap: rem(26);
+      @include mobile {
+        order: 3;
+      }
+    }
+  }
+}
+@layer Popup.Header {
+  @include mobile {
+    body {
+      &:has(#sitemap:popover-open) {
+        .header .btn-search {
+          display: none;
+        }
+        .header__inner {
+          &::before {
+            content: "";
+            width: rem(30);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+@use "sass:list";
+@use "../abstracts/" as *;
+
+//뱃지 사이즈
+$badgeSize: (
+  1: (
+    "className": ".base",
+    "height": 34,
+    "fontSize": 14,
+    "paddingInline": 16,
+    "borderWidth": 1,
+    "fontWeight": 700,
+  ),
+);
+
+// 벳지 색상 정의
+$badgeColor: (
+  1: (
+    "className": ".orange",
+    "bgColor": $orange,
+    "color": $white,
+    "borderColor": $orange,
+  ),
+  2: (
+    "className": ".skyblue",
+    "bgColor": $skyblue,
+    "color": $white,
+    "borderColor": $skyblue,
+  ),
+  3: (
+    "className": ".green",
+    "bgColor": $green,
+    "color": $white,
+    "borderColor": $green,
+  ),
+  4: (
+    "className": ".blue",
+    "bgColor": $blue,
+    "color": $white,
+    "borderColor": $blue,
+  ),
+  5: (
+    "className": ".gray",
+    "bgColor": $grayb4,
+    "color": $white,
+    "borderColor": $grayb4,
+  ),
+  6: (
+    "className": ".darkgray",
+    "bgColor": $gray66,
+    "color": $white,
+    "borderColor": $gray66,
+  ),
+);
+
+@layer Components.Badge {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: rem(100);
+    &.fullsize {
+      width: 100%;
+    }
+
+    @for $idx from 1 through list.length($badgeSize) {
+      @include badgeSize($badgeSize, $idx);
+    }
+    @for $index from 1 through list.length($badgeColor) {
+      @include badgeColor($badgeColor, $index);
+    }
+  }
+}

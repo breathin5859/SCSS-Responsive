@@ -1,0 +1,13 @@
+@use "../function" as *;
+
+@mixin scroll($width, $radius, $color) {
+  &::-webkit-scrollbar {
+    width: rem($width);
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: rem($width);
+    background: $color;
+    border-radius: rem($radius);
+  }
+}

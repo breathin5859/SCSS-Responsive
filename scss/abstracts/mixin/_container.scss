@@ -1,0 +1,11 @@
+@mixin container($name, $size) {
+  @container #{$name} ( width < #{$size}) {
+    @content;
+  }
+}
+
+@mixin style($value) {
+  @container style ( #{$value}) {
+    @content;
+  }
+}

@@ -1,0 +1,76 @@
+@use "../abstracts/" as *;
+
+@layer Components.Tab {
+  .tabs {
+    [data-tab] {
+      + label {
+        cursor: pointer;
+      }
+    }
+    .tab-content {
+      display: none;
+    }
+
+    // :not 없다면 (aria-hidden), 체크 되면 커스텀컨텐츠 display block
+    // &:has(:not([aria-hidden])[data-tab="1"]:checked) [data-tab-content="1"] {
+    //   display: block;
+    // }
+    // &:has(:not([aria-hidden])[data-tab="2"]:checked) [data-tab-content="2"] {
+    //   display: block;
+    // }
+    // &:has(:not([aria-hidden])[data-tab="3"]:checked) [data-tab-content="3"] {
+    //   display: block;
+    // }
+    // &:has(:not([aria-hidden])[data-tab="4"]:checked) [data-tab-content="4"] {
+    //   display: block;
+    // }
+    // &:has(:not([aria-hidden])[data-tab="5"]:checked) [data-tab-content="5"] {
+    //   display: block;
+    // }
+
+    //위의것을 @for문으로 , 키보드 접근 가능함
+    @for $index from 1 through 5 {
+      &:has(:not([aria-hidden])[data-tab="#{$index}"]:checked) [data-tab-content="#{$index}"] {
+        display: block;
+      }
+    }
+  }
+
+  .tab-type1 {
+    display: flex;
+    gap: rem(6);
+    li {
+      flex: 1;
+    }
+    input {
+      @include a11y-hidden;
+      &:focus-visible { //탭키 진입시만 디자인 보임
+        + label {
+          color: $gray33;
+          border-color: $yellow;
+          outline-offset: rem(3);
+          outline: rem(1) solid rgba($black, 0.5);
+        }
+      }
+      &:checked {
+        + label {
+          color: $gray33;
+          border-color: $yellow;
+        }
+      }
+    }
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: rem(44);
+      color: $graycc;
+      font-size: rem(16);
+      font-weight: 700;
+      border-bottom: rem(10) solid #f3f3f3;
+    }
+  }
+  .tab-content {
+    padding-top: rem(80);
+  }
+}

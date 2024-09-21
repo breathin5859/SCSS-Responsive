@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "sass scss:css --watch",
+    "build": "sass scss:build --style=compressed --no-source-map"
+  },
+  "dependencies": {
+    "sass": "^1.77.8"
+  }
+}

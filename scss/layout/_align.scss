@@ -1,0 +1,64 @@
+@use "../abstracts/" as *;
+
+@layer Layout.Align {
+  .align {
+    display: flex;
+    &.right {
+      justify-content: flex-end;
+    }
+    &.center {
+      justify-content: center;
+    }
+    &.both {
+      justify-content: space-between;
+    }
+    &.triple {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      > :nth-child(1) {
+        justify-self: start;
+      }
+      > :nth-child(2) {
+        justify-self: center;
+      }
+      > :nth-child(3) {
+        justify-self: end;
+      }
+    }
+    // y축 정렬
+    &.vt {
+      align-items: flex-start;
+    }
+    &.vm {
+      align-items: center;
+    }
+    &.vb {
+      align-items: flex-end;
+    }
+  }
+
+  // 텍스트 정렬
+  .text {
+    &-left {
+      text-align: left;
+    }
+    &-center {
+      text-align: center;
+    }
+    &-right {
+      text-align: right;
+    }
+  }
+
+  .mxauto {
+    width: rem(1224);
+    margin-inline: auto;
+    @include mobile {
+      width: 100%;
+    }
+    @include container(body, 1224px) {
+      width: 100%;
+    }
+  }
+}

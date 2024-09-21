@@ -1,0 +1,87 @@
+@use "../abstracts/" as *;
+@use "../layout/align" as *;
+
+@layer Components.Gnb {
+  .gnb {
+    @include mobile {
+      display: none;
+    }
+    @include container(body, 1135px) {
+      justify-self: center;
+    }
+    > ul {
+      display: flex;
+      gap: rem(40);
+      > li {
+        padding-block: rem(24);
+
+        > a {
+          transition: 0.5s;
+          background: linear-gradient(to bottom, $yellow, $yellow) no-repeat bottom / 0% rem(10);
+          color: $gray33;
+          font-size: rem(16);
+          font-weight: 700;
+        }
+        &:is(:has(:focus), :hover) {
+          a {
+            background-size: 100% rem(10);
+          }
+          .depth2 {
+            border-top: rem(1) solid $yellow;
+            grid-template-rows: 1fr;
+            translate: 0 rem(-1);
+            > ul {
+              padding-block: rem(30);
+            }
+          }
+        }
+      }
+    }
+    .depth2 {
+      @include position(f, left, 0, top, anchor(--header bottom), 500);
+      display: grid;
+      grid-template-rows: 0fr;
+      translate: 0;
+      width: 100%;
+      background-color: $white;
+      transition: grid-template-rows 0.5s ease(in-quart);
+
+      > ul {
+        @extend .mxauto;
+        overflow: hidden;
+        display: flex;
+        gap: rem(60);
+        translate: rem(208);
+        padding-block: rem(0);
+        transition: padding-block 0.5s;
+
+        > li {
+          > a {
+            color: $gray66;
+            font-size: rem(14);
+            letter-spacing: rem(-0.7);
+            font-weight: 700;
+            background: linear-gradient(to bottom, $yellow, $yellow) no-repeat bottom / 0% rem(3);
+            transition: 0.5s;
+          }
+          &:hover {
+            a {
+              background-size: 100% rem(3);
+            }
+          }
+          > ul {
+            padding-top: rem(16);
+            > li {
+              > a {
+                color: $gray66;
+                font-size: rem(14);
+                line-height: rem(30);
+                letter-spacing: rem(-0.7);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

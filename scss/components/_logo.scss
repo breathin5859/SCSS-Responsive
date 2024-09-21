@@ -1,0 +1,8 @@
+@use "../abstracts/" as *;
+
+.logo {
+  @include mobile {
+    order: 2;
+    justify-self: center;
+  }
+}

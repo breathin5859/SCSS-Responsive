@@ -1,0 +1,91 @@
+@use "../abstracts/" as *;
+
+@layer Component.Sitemap {
+  .sitemap {
+    display: none;
+    @include mobile {
+      display: grid;
+      padding: rem(90) rem(30);
+      width: auto;
+      height: auto;
+      background-color: $yellow;
+
+      //애니메이션 끝
+      inset: rem(94) 0 0 100%;
+      transition: 0.5s allow-discrete;
+      border: none;
+
+      overflow-x: hidden;
+      overflow-y: auto;
+      summary {
+        list-style: none;
+        white-space: nowrap;
+      }
+
+      //도착
+      &:popover-open {
+        inset: rem(94) 0 0 0;
+        //시작
+        @starting-style {
+          inset: rem(94) 0 0 100%;
+        }
+      }
+      &__nav {
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-inline: rem(100);
+        @include scroll(5, 10, rgba($white, 0.5));
+
+        > ul {
+          > li {
+            border-bottom: rem(1) solid rgba($white, 0.5);
+            summary {
+              color: $white;
+              font-size: rem(46);
+              font-weight: 700;
+              line-height: 100%;
+              padding-block: rem(34);
+            }
+          }
+        }
+
+        .depth2 {
+          ul {
+            display: grid;
+            gap: rem(34);
+            margin-block: rem(34);
+          }
+          > ul {
+            > li {
+              > a {
+                color: $white;
+                font-size: rem(34);
+                font-weight: 700;
+                line-height: 1;
+              }
+            }
+
+            ul {
+              a {
+                display: grid;
+                grid-template-columns: rem(20) 1fr;
+                color: #fff387;
+                font-size: rem(30);
+                &::before {
+                  content: "";
+                  align-self: start;
+                  justify-self: center;
+                  margin-top: rem(19);
+                  width: rem(7);
+                  height: rem(7);
+                  border-radius: rem(10);
+                  background-color: #fff387;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

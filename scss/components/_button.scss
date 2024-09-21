@@ -1,0 +1,161 @@
+@use "sass:list";
+@use "../abstracts/" as *;
+
+// 버튼 사이즈 정의
+$buttonSize: (
+  1: (
+    "className": base,
+    "height": 44,
+    "fontSize": 16,
+    "paddingInline": 33,
+    "borderWidth": 1,
+    "fontWeight": 700,
+  ),
+  2: (
+    "className": lg,
+    "height": 60,
+    "fontSize": 16,
+    "paddingInline": 33,
+    "borderWidth": 1,
+    "fontWeight": 700,
+  ),
+);
+
+// 버튼 색상 정의
+$buttonColor: (
+  1: (
+    "className": ".primary",
+    "bgColor": $yellow,
+    "color": $white,
+    "borderColor": $yellow,
+  ),
+  2: (
+    "className": ".secondary",
+    "bgColor": $white,
+    "color": $yellow,
+    "borderColor": $yellow,
+  ),
+  3: (
+    "className": ".gray",
+    "bgColor": $white,
+    "color": $gray99,
+    "borderColor": $gray99,
+  ),
+  4: (
+    "className": ".black",
+    "bgColor": $gray33,
+    "color": $white,
+    "borderColor": $gray33,
+  ),
+);
+
+// 버튼 아이콘 정의
+$buttonIcon: (
+  1: (
+    "className": ".ico1",
+    "direction": after,
+    "imgName": "ico_more.svg",
+    "widht": 13,
+    "height": 13,
+  ),
+);
+
+//사이즈
+@layer Components.Button {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(8);
+    box-sizing: border-box;
+    &.fullsize {
+      width: 100%;
+    }
+
+    @for $idx from 1 through list.length($buttonSize) {
+      @include buttonSize($buttonSize, $idx);
+    }
+    @for $index from 1 through list.length($buttonColor) {
+      @include buttonColor($buttonColor, $index);
+    }
+    @for $index from 1 through list.length($buttonIcon) {
+      @include buttonIcon($buttonIcon, $index);
+    }
+  }
+
+  .btn-login {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(10);
+    color: $gray99;
+    font-size: rem(12);
+    font-weight: 700;
+    letter-spacing: rem(-0.6);
+    white-space: nowrap;
+    @include mobile {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      @include background("ico_login.svg");
+      width: rem(16);
+      height: rem(19);
+    }
+  }
+  .btn-sitemap {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(10);
+    color: $gray99;
+    font-size: rem(12);
+    font-weight: 700;
+    letter-spacing: rem(-0.6);
+    white-space: nowrap;
+    @include mobile {
+      span {
+        @include a11y-hidden;
+      }
+    }
+    &::before {
+      content: "";
+      @include background("ico_sitemap.svg");
+      width: rem(14);
+      height: rem(14);
+      @include mobile {
+        @include background("ico_sitemap_mobile.svg");
+        width: rem(28);
+        height: rem(28);
+        body:has(#sitemap:popover-open) & {
+          @include background("ico_close.svg");
+        }
+      }
+    }
+  }
+  .btn-search {
+    @include background("ico_search.svg");
+    width: rem(30);
+    height: rem(30);
+    order: 1;
+  }
+  :is(.btn-prev, .btn-next) {
+    width: rem(36);
+    height: rem(36);
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+  .btn-prev {
+    @include background("ico_prev.svg");
+  }
+  .btn-next {
+    @include background("ico_next.svg");
+  }
+
+  .btn-group {
+    .dialog-type1 & {
+      margin-top: rem(30);
+    }
+  }
+}

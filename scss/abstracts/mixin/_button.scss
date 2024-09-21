@@ -1,0 +1,32 @@
+@use "./background" as *;
+@use "../function" as *;
+
+@mixin buttonSize($varName, $index) {
+  &.#{map-get($varName, $index, className)} {
+    height: rem(map-get($varName, $index, height));
+    font-size: rem(map-get($varName, $index, fontSize));
+    padding-inline: rem(map-get($varName, $index, paddingInline));
+    border: rem(map-get($varName, $index, borderWidth)) solid;
+    font-weight: map-get($varName, $index, fontWeight);
+  }
+}
+//색상
+@mixin buttonColor($varName, $index) {
+  &#{map-get($varName , $index, className)} {
+    background-color: map-get($varName, $index, bgColor);
+    color: map-get($varName, $index, color);
+    border-color: map-get($varName, $index, borderColor);
+  }
+}
+
+//아이콘
+@mixin buttonIcon($varName, $index) {
+  &#{map-get($varName, $index, className)} {
+    &::#{map-get($varName, $index, direction)} {
+      @include background(map-get($varName, $index, imgName));
+      content: "";
+      width: rem(map-get($varName, $index, widht));
+      height: rem(map-get($varName, $index, height));
+    }
+  }
+}

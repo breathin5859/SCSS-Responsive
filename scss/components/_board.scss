@@ -1,0 +1,75 @@
+@use "../abstracts/" as *;
+
+@layer Components.Board {
+  .border-info {
+    color: $gray66;
+    font-size: rem(24);
+    line-height: 100%;
+    letter-spacing: rem(-1.2);
+    margin-top: rem(100);
+    + table {
+      margin-top: rem(20);
+      @include mobile {
+        margin-top: rem(10);
+      }
+    }
+    @include mobile {
+      margin-inline: rem($mobilePaddingX);
+      margin-top: rem(48);
+      font-size: rem(26);
+      line-height: 180%;
+      letter-spacing: rem(-1.3);
+    }
+  }
+
+  .paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: rem(11);
+    margin-top: rem(30);
+    @include mobile {
+      margin: 0;
+      :not(.btn) {
+        display: none;
+      }
+    }
+    .btn {
+      display: none;
+      line-height: 1;
+      @include mobile {
+        display: flex;
+        width: calc(100% - rem($mobilePaddingX * 2));
+      }
+    }
+    ol {
+      display: flex;
+      a {
+        display: block;
+        width: rem(36);
+        aspect-ratio: 1;
+        border-radius: rem(100);
+        text-align: center;
+        align-content: center;
+        font-size: rem(14);
+
+        // 사파리 align-content 버전 호환성 - 안될시 서포트 코드
+        @supports not (not (align-content: center)) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+        }
+        &:hover {
+          font-weight: 700;
+          color: $gray66;
+        }
+        &.--active {
+          background-color: #f3f3f3;
+          font-weight: 700;
+          color: $gray33;
+        }
+      }
+    }
+  }
+}

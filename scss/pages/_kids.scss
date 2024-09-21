@@ -1,0 +1,154 @@
+@use "../abstracts/" as *;
+
+$list7: 1 #fdb2b2, 2 #f6d199, 3 #e0e271, 4 #99d65d, 5 #a3deeb, 6 #c1d3f9, 7 #dcc2f4;
+
+@layer Pages.Kids {
+  .kids__img {
+    margin-block: rem(30) rem(60);
+    width: 100%;
+
+    @include mobile {
+      margin-block: rem(48) rem(60);
+    }
+  }
+  .activity {
+    &__gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: rem(24);
+      font-size: 0;
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: rem(20);
+      }
+      img {
+        width: 100%;
+      }
+      figcaption {
+        padding-block: rem(30);
+        background-color: #666;
+        color: $white;
+        font-size: rem(16);
+        line-height: 180%;
+        letter-spacing: rem(-0.8);
+        text-align: center;
+        @include mobile {
+          font-size: rem(24);
+          letter-spacing: rem(-1.2);
+        }
+      }
+    }
+    //미래부 7지침
+    &__list7 {
+      display: flex;
+      @include mobile {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: rem(53) rem(20);
+      }
+      li {
+        flex: 1;
+        display: grid;
+        gap: rem(10);
+        text-align: center;
+        // &:nth-child(1) {
+        //   span {
+        //     background-color: #fdb2b2;
+        //   }
+        // }
+        @each $nth, $color in $list7 {
+          &:nth-child(#{$nth}) {
+            span {
+              background-color: $color;
+            }
+          }
+        }
+        // 색상이 수학적으로 계산된 패턴인 경우, h값만 변경시켜 할수 있음
+        // @for $idx from 1 through 7 {
+        //   &:nth-child(#{$idx}) {
+        //     span {
+        //       background-color: hsl(20 * $idx, 80%, 60%);
+        //     }
+        //   }
+        // }
+        @include mobile {
+          flex: none;
+        }
+      }
+      br {
+        display: none;
+        @include mobile {
+          display: block;
+        }
+      }
+      span {
+        justify-self: center;
+        width: rem(150);
+        height: rem(150);
+        border-radius: rem(1000);
+        align-content: center;
+        color: $white;
+        font-size: rem(36);
+        line-height: 100%;
+        letter-spacing: rem(-1.8);
+        @include container(body, 1070px) {
+          width: clamp(rem(120), 8cqw, rem(150)); // clamp (최소값, 진행값(백분율%), 최대값)
+          height: auto;
+          aspect-ratio: 1;
+        }
+      }
+      div {
+        color: $gray99;
+        font-size: rem(16);
+        font-weight: 500;
+        letter-spacing: rem(-1.1);
+        @include mobile {
+          font-size: rem(22);
+        }
+        @include container(body, 1020px) {
+          font-size: clamp(rem(14), 1cqw, rem(16));
+        }
+      }
+    }
+
+    &__challenge-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: rem(24);
+      margin-top: rem(40);
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: rem(20);
+      }
+      li {
+        padding: rem(30);
+        border: rem(1) solid $yellow;
+        @include mobile {
+          padding: rem(40);
+        }
+      }
+      strong {
+        color: $yellow;
+        font-size: rem(16);
+        font-weight: 700;
+        letter-spacing: rem(-0.8);
+        @include mobile {
+          font-size: rem(26);
+          letter-spacing: rem(-1.3);
+        }
+      }
+      p {
+        padding-top: rem(10);
+        color: $gray66;
+        font-size: rem(16);
+        font-weight: 300;
+        line-height: 180%;
+        letter-spacing: rem(-0.8);
+        @include mobile {
+          font-size: rem(26);
+          letter-spacing: rem(-1.3);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@use "../abstracts/" as *;
+
+@layer Layout.Responsive {
+  .only-mobile {
+    display: none;
+    @include mobile {
+      display: block;
+    }
+  }
+}

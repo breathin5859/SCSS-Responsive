@@ -1,0 +1,7 @@
+@use "../abstracts/" as *;
+
+@layer Layout.IR {
+  .a11y-hidden {
+    @include a11y-hidden;
+  }
+}

@@ -1,0 +1,52 @@
+@use "../abstracts/" as *;
+
+@layer Pages.Login {
+  .login {
+    text-align: center;
+    &__title {
+      color: $yellow;
+      font-size: rem(40);
+      font-weight: 400;
+    }
+    &__text {
+      color: $gray33;
+      font-size: rem(13);
+      font-weight: 300;
+      line-height: 150%;
+    }
+
+    &__form {
+      width: rem(390);
+      margin: rem(40) auto rem(20);
+      margin-inline: auto;
+      legend {
+        @include a11y-hidden;
+      }
+      fieldset {
+        display: grid;
+      }
+      input {
+        margin-bottom: rem(10);
+      }
+    }
+    &__list {
+      justify-content: center;
+      @include bar(line, 1, 16, #ccc, 20);
+      a {
+        color: $gray66;
+        font-size: rem(14);
+        line-height: 160%;
+        letter-spacing: rem(-0.7);
+      }
+    }
+  }
+  body:has(.login) {
+    background-color: #f4f4f4;
+    .header {
+      background-color: $white;
+    }
+    .container {
+      padding-top: rem(60);
+    }
+  }
+}

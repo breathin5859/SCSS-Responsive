@@ -1,0 +1,14 @@
+@use "../variable" as *;
+
+//모바일전용 반응형 코드
+@mixin mobile {
+  @media ($mobileSize > width) {
+    @content;
+  }
+}
+//타블렛 전용 반응형코드
+@mixin tablet {
+  @media ($tabletSize > width > calc($mobileSize + 1)) {
+    @content;
+  }
+}
