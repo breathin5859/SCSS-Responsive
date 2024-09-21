@@ -7,9 +7,9 @@
     font-size: 62.5%;
     @include mobile {
       //디자인이 720 이기때문에 360기준
-      // font-size: 31.25%;
-      // $baseSize: calc(62.5% / 2);
-      // font-size: $baseSize;
+      font-size: 31.25%;
+      $baseSize: calc(62.5% / 2);
+      font-size: $baseSize;
     }
   }
   body {
