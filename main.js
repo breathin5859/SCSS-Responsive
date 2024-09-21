@@ -5,7 +5,7 @@ import imageminJpegtran from "imagemin-jpegtran";
 import imageminPngquant from "imagemin-pngquant";
 
 const INPUT = ["images/*.{jpg,png,svg}"]; //이미지 압출을 진행할 폴더
-const OUTPUT = "imagesmin/"; //압축된 이미지를 저장할 폴더
+const OUTPUT = "images/"; //압축된 이미지를 저장할 폴더
 
 const files = await imagemin(INPUT, {
   destination: OUTPUT,
