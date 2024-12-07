@@ -48,6 +48,10 @@
   dialog {
     margin: 0;
     padding: 0;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-touch-callout: none;
+    user-select: none;
   }
   body,
   textarea,
